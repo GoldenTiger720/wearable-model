@@ -140,7 +140,7 @@ class LIAEngine:
         """
         hr = data.heart_rate
         activity = data.activity
-        hrv_score = hrv['hrv_score']
+        hrv_score = hrv.hrv_score
 
         # Sleep state
         if hr < 60 and activity < 5 and pattern.value == 'stable':
@@ -252,7 +252,7 @@ class LIAEngine:
         """
         # Cardiovascular health (based on HR, HRV)
         hr = data.heart_rate
-        hrv_score = hrv['hrv_score']
+        hrv_score = hrv.hrv_score
 
         if 60 <= hr <= 80 and hrv_score > 70:
             cardio_health = 90 + random.uniform(-5, 5)
@@ -299,7 +299,7 @@ class LIAEngine:
         else:
             stress_indicators.append(0.2)
 
-        if circadian_alignment['alignment_score'] < 0.7:
+        if circadian_alignment.alignment_score < 0.7:
             stress_indicators.append(0.5)
         else:
             stress_indicators.append(0.2)
@@ -339,7 +339,7 @@ class LIAEngine:
             risks.append("Low heart rate (bradycardia)")
 
         # HRV risks
-        if hrv['hrv_score'] < 50:
+        if hrv.hrv_score < 50:
             risks.append("Low heart rate variability")
 
         # SpO2 risks
@@ -357,7 +357,7 @@ class LIAEngine:
             risks.append("Poor signal quality - check sensor placement")
 
         # Circadian misalignment
-        if circadian_alignment['alignment_score'] < 0.6:
+        if circadian_alignment.alignment_score < 0.6:
             risks.append("Circadian rhythm misalignment")
 
         # Artifacts
@@ -373,9 +373,9 @@ class LIAEngine:
         positives = []
 
         # Good HRV
-        if hrv['hrv_score'] > 75:
+        if hrv.hrv_score > 75:
             positives.append("Excellent heart rate variability")
-        elif hrv['hrv_score'] > 65:
+        elif hrv.hrv_score > 65:
             positives.append("Good heart rate variability")
 
         # Good SpO2
@@ -387,7 +387,7 @@ class LIAEngine:
             positives.append("Excellent signal quality")
 
         # Good circadian alignment
-        if circadian_alignment['alignment_score'] > 0.85:
+        if circadian_alignment.alignment_score > 0.85:
             positives.append("Strong circadian rhythm alignment")
 
         # Normal temperature
